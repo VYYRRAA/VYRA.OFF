@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Info } from "lucide-react";
@@ -47,12 +46,14 @@ const Apply = () => {
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submission started");
 
     // Form validation
     const requiredFields = ["name", "age", "email", "socials", "telegram", "contentStyle"];
     const missingFields = requiredFields.filter(field => !formData[field as keyof ApplicationForm]);
 
     if (missingFields.length > 0) {
+      console.log("Missing fields:", missingFields);
       toast({
         title: "Missing Information",
         description: "Please fill out all required fields.",
@@ -62,45 +63,73 @@ const Apply = () => {
     }
 
     setIsSubmitting(true);
+    console.log("Preparing data for submission");
 
-    // Prepare the data to insert
-    const insertData = {
-      name: formData.name,
-      age: Number(formData.age),
-      email: formData.email,
-      country: formData.country || null,
-      socials: formData.socials,
-      telegram: formData.telegram,
-      content_style: formData.contentStyle,
-    };
+    try {
+      // Prepare the data to insert
+      const insertData = {
+        name: formData.name,
+        age: Number(formData.age),
+        email: formData.email,
+        country: formData.country || null,
+        socials: formData.socials,
+        telegram: formData.telegram,
+        content_style: formData.contentStyle,
+      };
+      
+      console.log("Insert data prepared:", insertData);
 
-    const { data, error } = await supabase
-      .from("applications")
-      .insert([insertData])
-      .select("id")
-      .single();
+      const { data, error } = await supabase
+        .from("applications")
+        .insert([insertData])
+        .select("id");
+      
+      console.log("Supabase response:", { data, error });
 
-    if (error) {
-      console.error("Failed to submit application:", error);
+      if (error) {
+        console.error("Database error:", error);
+        setIsSubmitting(false);
+        toast({
+          title: "Submission Failed",
+          description: `Database error: ${error.message}`,
+          variant: "destructive"
+        });
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        console.error("No data returned from insert");
+        setIsSubmitting(false);
+        toast({
+          title: "Submission Failed",
+          description: "No confirmation received from database. Please try again.",
+          variant: "destructive"
+        });
+        return;
+      }
+
+      const appId = data[0]?.id?.toString();
+      console.log("Application ID:", appId);
+      
+      setApplicationId(appId || "Unknown");
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+
+      toast({
+        title: "Application Submitted!",
+        description: `Your application has been received. Your application ID is: ${appId}`,
+      });
+
+      setFormData(initialFormState);
+    } catch (error) {
+      console.error("Unexpected error:", error);
       setIsSubmitting(false);
       toast({
         title: "Submission Failed",
-        description: "There was a problem submitting your application. Please try again.",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive"
       });
-      return;
     }
-
-    setApplicationId(data?.id ? data.id.toString() : "");
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    toast({
-      title: "Application Submitted!",
-      description: `Your application has been received. Your application ID is: ${data?.id}`,
-    });
-
-    setFormData(initialFormState);
   };
 
   return (
@@ -111,7 +140,7 @@ const Apply = () => {
         <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              <span className="inline">Apply to Join </span>
+              <span className="inline">Apply to Join </span> 
               <span className="inline bg-gradient-to-r from-primary to-accent-foreground bg-clip-text text-transparent">VYRA</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
