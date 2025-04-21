@@ -11,6 +11,8 @@ const Navbar = () => {
     <header className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
+          {/* Add logo before title */}
+          <img src="/lovable-uploads/15b3531c-7211-43ad-b2e8-f4c1bc068ef7.png" alt="Logo" className="h-10 w-10 object-contain rounded-full" />
           <span className="font-bold text-2xl bg-gradient-to-r from-primary to-accent-foreground bg-clip-text text-transparent">VYRA</span>
         </Link>
 
@@ -19,7 +21,7 @@ const Navbar = () => {
           <Link to="/" className="text-foreground hover:text-primary transition-colors">Home</Link>
           <Link to="/about" className="text-foreground hover:text-primary transition-colors">About</Link>
           <Link to="/services" className="text-foreground hover:text-primary transition-colors">Services</Link>
-          <Link to="/success-stories" className="text-foreground hover:text-primary transition-colors">Success Stories</Link>
+          {/* Removed Success Stories link */}
           <Link to="/apply">
             <Button className="bg-primary hover:bg-primary/90">Apply Now</Button>
           </Link>
@@ -59,13 +61,7 @@ const Navbar = () => {
             >
               Services
             </Link>
-            <Link 
-              to="/success-stories" 
-              className="text-foreground hover:text-primary transition-colors py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Success Stories
-            </Link>
+            {/* Removed Success Stories link */}
             <Link 
               to="/apply"
               onClick={() => setIsMenuOpen(false)}

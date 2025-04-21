@@ -17,9 +17,12 @@ export type Database = {
           created_at: string | null
           email: string
           id: number
+          instagram: string | null
           name: string
+          onlyfans: string | null
           socials: string
           telegram: string
+          twitter: string | null
         }
         Insert: {
           age: number
@@ -28,9 +31,12 @@ export type Database = {
           created_at?: string | null
           email: string
           id?: number
+          instagram?: string | null
           name: string
+          onlyfans?: string | null
           socials: string
           telegram: string
+          twitter?: string | null
         }
         Update: {
           age?: number
@@ -39,9 +45,12 @@ export type Database = {
           created_at?: string | null
           email?: string
           id?: number
+          instagram?: string | null
           name?: string
+          onlyfans?: string | null
           socials?: string
           telegram?: string
+          twitter?: string | null
         }
         Relationships: []
       }

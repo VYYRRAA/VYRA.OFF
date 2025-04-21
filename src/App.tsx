@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import SuccessStories from "./pages/SuccessStories";
 import Apply from "./pages/Apply";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -24,7 +23,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/success-stories" element={<SuccessStories />} />
+          {/* The Success Stories route has been removed */}
           <Route path="/apply" element={<Apply />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />

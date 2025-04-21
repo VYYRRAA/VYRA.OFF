@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { ArrowRight, Check, Heart, MessageSquare, Users, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -204,6 +203,7 @@ const Index = () => {
       </section>
       
       {/* Testimonial Preview */}
+      {/* Remove "Read More Success Stories" button and references */}
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -227,14 +227,6 @@ const Index = () => {
                 <p className="text-sm text-muted-foreground">Content Creator</p>
               </div>
             </div>
-          </div>
-          
-          <div className="text-center mt-10">
-            <Link to="/success-stories">
-              <Button variant="outline">
-                Read More Success Stories
-              </Button>
-            </Link>
           </div>
         </div>
       </section>

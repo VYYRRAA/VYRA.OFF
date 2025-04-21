@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Info } from "lucide-react";
@@ -15,8 +16,11 @@ interface ApplicationForm {
   age: string;
   email: string;
   country: string;
-  socials: string;
+  instagram: string;
+  twitter: string;
+  onlyfans: string;
   telegram: string;
+  socials: string;
   contentStyle: string;
 }
 
@@ -26,8 +30,11 @@ const initialFormState: ApplicationForm = {
   age: "",
   email: "",
   country: "",
-  socials: "",
+  instagram: "",
+  twitter: "",
+  onlyfans: "",
   telegram: "",
+  socials: "",
   contentStyle: ""
 };
 
@@ -49,7 +56,9 @@ const Apply = () => {
     console.log("Form submission started");
 
     // Form validation
-    const requiredFields = ["name", "age", "email", "socials", "telegram", "contentStyle"];
+    const requiredFields = [
+      "name", "age", "email", "instagram", "twitter", "onlyfans", "telegram", "contentStyle"
+    ];
     const missingFields = requiredFields.filter(field => !formData[field as keyof ApplicationForm]);
 
     if (missingFields.length > 0) {
@@ -72,8 +81,11 @@ const Apply = () => {
         age: Number(formData.age),
         email: formData.email,
         country: formData.country || null,
-        socials: formData.socials,
+        instagram: formData.instagram,
+        twitter: formData.twitter,
+        onlyfans: formData.onlyfans,
         telegram: formData.telegram,
+        socials: formData.socials,
         content_style: formData.contentStyle,
       };
       
@@ -227,16 +239,44 @@ const Apply = () => {
                           className="mt-1"
                         />
                       </div>
-                      
-                      {/* Social Media */}
+
+                      {/* Instagram */}
                       <div>
-                        <Label htmlFor="socials">Social Media Accounts *</Label>
+                        <Label htmlFor="instagram">Instagram Username *</Label>
                         <Input 
-                          id="socials"
-                          name="socials"
-                          value={formData.socials}
+                          id="instagram"
+                          name="instagram"
+                          value={formData.instagram}
                           onChange={handleChange}
-                          placeholder="Instagram: @username, TikTok: @username"
+                          placeholder="@yourinstagram"
+                          className="mt-1"
+                          required
+                        />
+                      </div>
+                      
+                      {/* Twitter */}
+                      <div>
+                        <Label htmlFor="twitter">Twitter Username *</Label>
+                        <Input 
+                          id="twitter"
+                          name="twitter"
+                          value={formData.twitter}
+                          onChange={handleChange}
+                          placeholder="@yourtwitter"
+                          className="mt-1"
+                          required
+                        />
+                      </div>
+
+                      {/* OnlyFans */}
+                      <div>
+                        <Label htmlFor="onlyfans">OnlyFans Username *</Label>
+                        <Input 
+                          id="onlyfans"
+                          name="onlyfans"
+                          value={formData.onlyfans}
+                          onChange={handleChange}
+                          placeholder="@youronlyfans"
                           className="mt-1"
                           required
                         />
@@ -250,9 +290,22 @@ const Apply = () => {
                           name="telegram"
                           value={formData.telegram}
                           onChange={handleChange}
-                          placeholder="@username"
+                          placeholder="@yourtelegram"
                           className="mt-1"
                           required
+                        />
+                      </div>
+                      
+                      {/* Social Media (Other) */}
+                      <div>
+                        <Label htmlFor="socials">Other Social Media Accounts</Label>
+                        <Input 
+                          id="socials"
+                          name="socials"
+                          value={formData.socials}
+                          onChange={handleChange}
+                          placeholder="TikTok: @username, YouTube: @username, etc."
+                          className="mt-1"
                         />
                       </div>
                       
