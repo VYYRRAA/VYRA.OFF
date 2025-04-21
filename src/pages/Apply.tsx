@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Check, Info } from "lucide-react";
@@ -10,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 
-// Application form interface—ensure all major social platforms included
+// Application form interface with optional fields
 interface ApplicationForm {
   name: string;
   age: string;
@@ -28,7 +27,6 @@ interface ApplicationForm {
   contentStyle: string;
 }
 
-// Initial form state includes more fields for additional social platforms
 const initialFormState: ApplicationForm = {
   name: "",
   age: "",
@@ -98,7 +96,7 @@ const Apply = () => {
     // Validation: At least the required fields
     const requiredFields = [
       "name", "age", "email",
-      "instagram", "twitter", "onlyfans", "telegram", "contentStyle"
+      "instagram", "twitter", "contentStyle"
     ];
     const missingFields = requiredFields.filter(field => !formData[field as keyof ApplicationForm]);
 
@@ -116,23 +114,43 @@ const Apply = () => {
     console.log("Preparing data for submission");
 
     try {
-      // Prepare the data to insert (including new additions)
-      const insertData = {
+      // Check which columns exist in the database schema
+      const { data: columnsData, error: columnsError } = await supabase
+        .from('applications')
+        .select('*')
+        .limit(1);
+        
+      if (columnsError) {
+        console.error("Error checking columns:", columnsError);
+        throw new Error("Failed to check database structure");
+      }
+      
+      // Get actual column names from the first row
+      const availableColumns = columnsData && columnsData[0] 
+        ? Object.keys(columnsData[0]) 
+        : ['name', 'age', 'email', 'country', 'instagram', 'twitter', 'onlyfans', 'telegram', 'socials', 'content_style'];
+      
+      console.log("Available columns:", availableColumns);
+      
+      // Map form data to available columns
+      const insertData: any = {
         name: formData.name,
         age: Number(formData.age),
         email: formData.email,
-        country: formData.country || null,
-        instagram: formData.instagram,
-        twitter: formData.twitter,
-        onlyfans: formData.onlyfans,
-        telegram: formData.telegram,
-        tiktok: formData.tiktok,
-        youtube: formData.youtube,
-        facebook: formData.facebook,
-        threads: formData.threads,
-        socials: formData.socials,
         content_style: formData.contentStyle,
+        socials: formData.socials || ""
       };
+      
+      // Only include fields if they exist in the database
+      if (availableColumns.includes('country')) insertData.country = formData.country || null;
+      if (availableColumns.includes('instagram')) insertData.instagram = formData.instagram || null;
+      if (availableColumns.includes('twitter')) insertData.twitter = formData.twitter || null;
+      if (availableColumns.includes('onlyfans')) insertData.onlyfans = formData.onlyfans || null;
+      if (availableColumns.includes('telegram')) insertData.telegram = formData.telegram || null;
+      if (availableColumns.includes('tiktok')) insertData.tiktok = formData.tiktok || null;
+      if (availableColumns.includes('youtube')) insertData.youtube = formData.youtube || null;
+      if (availableColumns.includes('facebook')) insertData.facebook = formData.facebook || null;
+      if (availableColumns.includes('threads')) insertData.threads = formData.threads || null;
       
       console.log("Insert data prepared:", insertData);
 
@@ -310,7 +328,7 @@ const Apply = () => {
                       </div>
                       {/* OnlyFans */}
                       <div>
-                        <Label htmlFor="onlyfans">OnlyFans Username *</Label>
+                        <Label htmlFor="onlyfans">OnlyFans Username</Label>
                         <Input 
                           id="onlyfans"
                           name="onlyfans"
@@ -318,12 +336,11 @@ const Apply = () => {
                           onChange={handleChange}
                           placeholder="@youronlyfans"
                           className="mt-1"
-                          required
                         />
                       </div>
                       {/* Telegram */}
                       <div>
-                        <Label htmlFor="telegram">Telegram Username *</Label>
+                        <Label htmlFor="telegram">Telegram Username</Label>
                         <Input 
                           id="telegram"
                           name="telegram"
@@ -331,7 +348,6 @@ const Apply = () => {
                           onChange={handleChange}
                           placeholder="@yourtelegram"
                           className="mt-1"
-                          required
                         />
                       </div>
                       {/* TikTok */}
