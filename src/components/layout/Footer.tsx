@@ -28,9 +28,7 @@ const Footer = () => {
               <li>
                 <Link to="/services" className="text-muted-foreground hover:text-primary transition-colors">Services</Link>
               </li>
-              <li>
-                <Link to="/success-stories" className="text-muted-foreground hover:text-primary transition-colors">Success Stories</Link>
-              </li>
+              {/* Removed Success Stories link */}
             </ul>
           </div>
           
