@@ -9,6 +9,38 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      application_files: {
+        Row: {
+          application_id: number | null
+          created_at: string | null
+          file_content: string
+          file_name: string
+          id: number
+        }
+        Insert: {
+          application_id?: number | null
+          created_at?: string | null
+          file_content: string
+          file_name: string
+          id?: number
+        }
+        Update: {
+          application_id?: number | null
+          created_at?: string | null
+          file_content?: string
+          file_name?: string
+          id?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "application_files_application_id_fkey"
+            columns: ["application_id"]
+            isOneToOne: false
+            referencedRelation: "applications"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       applications: {
         Row: {
           age: number

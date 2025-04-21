@@ -30,14 +30,17 @@ const saveApplicationAsTextToDb = async (
   ];
   const file_content = lines.join("\n");
 
-  // Upload to Supabase
-  const { error } = await supabase.from("application_files").insert([
-    {
-      application_id: Number(data.id),
-      file_name: `vyra_application_${data.id}.txt`,
-      file_content,
-    },
-  ]);
+  // Upload to Supabase using the custom type definition
+  const { error } = await supabase
+    .from("application_files")
+    .insert([
+      {
+        application_id: Number(data.id),
+        file_name: `vyra_application_${data.id}.txt`,
+        file_content,
+      },
+    ]);
+    
   return { error };
 };
 
