@@ -23,12 +23,15 @@ const queryClient = new QueryClient({
   },
 });
 
+// Get base path from Vite environment or default to the GitHub repo path
+const basePath = import.meta.env.BASE_URL || "/VYRA.OF/";
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={basePath}>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<About />} />

@@ -4,12 +4,12 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-// To deploy to GitHub Pages, set the base option to your repo name, e.g. "/your-repo-name/"
-// For local development or normal deployment, just leave this as "/"
-const repoBase = process.env.VITE_BASE_PATH || "/";
+// For GitHub Pages deployment, set the base path to match your repository name
+// Based on the URL in the screenshot: https://vyyra.github.io/VYRA.OF/
+const repoBase = process.env.VITE_BASE_PATH || "/VYRA.OF/";
 
 export default defineConfig(({ mode }) => ({
-  base: repoBase, // Change to e.g. "/your-repo-name/" for GitHub Pages
+  base: repoBase, // Set to your GitHub repo name with leading and trailing slashes
   server: {
     host: "::",
     port: 8080,
