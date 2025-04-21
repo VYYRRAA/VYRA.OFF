@@ -61,7 +61,7 @@ export default function ApplyForm({ onSuccess }: ApplyFormProps) {
 
     const requiredFields = [
       "name", "age", "email",
-      "instagram", "twitter", "contentStyle"
+      "instagram", "twitter", "contentStyle", "onlyfans"
     ];
     const missingFields = requiredFields.filter(field => !formData[field as keyof ApplicationForm]);
     if (missingFields.length > 0) {
@@ -101,13 +101,13 @@ export default function ApplyForm({ onSuccess }: ApplyFormProps) {
         email: formData.email,
         content_style: formData.contentStyle,
         socials: formData.socials || "",
-        telegram: formData.telegram || "" // Fix: Provide default empty string for telegram
+        telegram: formData.telegram || "", // Fix: Provide default empty string for telegram
+        onlyfans: formData.onlyfans || ""
       };
 
       if (availableColumns.includes('country')) insertData.country = formData.country || null;
       if (availableColumns.includes('instagram')) insertData.instagram = formData.instagram || null;
       if (availableColumns.includes('twitter')) insertData.twitter = formData.twitter || null;
-      if (availableColumns.includes('onlyfans')) insertData.onlyfans = formData.onlyfans || null;
       if (availableColumns.includes('tiktok')) insertData.tiktok = formData.tiktok || null;
       if (availableColumns.includes('youtube')) insertData.youtube = formData.youtube || null;
       if (availableColumns.includes('facebook')) insertData.facebook = formData.facebook || null;
@@ -247,7 +247,9 @@ export default function ApplyForm({ onSuccess }: ApplyFormProps) {
           </div>
           {/* OnlyFans */}
           <div>
-            <Label htmlFor="onlyfans">OnlyFans Username</Label>
+            <Label htmlFor="onlyfans">
+              OnlyFans Username <span className="text-pink-500">*</span>
+            </Label>
             <Input
               id="onlyfans"
               name="onlyfans"
@@ -255,6 +257,7 @@ export default function ApplyForm({ onSuccess }: ApplyFormProps) {
               onChange={handleChange}
               placeholder="@youronlyfans"
               className="mt-1"
+              required
             />
           </div>
           {/* Telegram */}
