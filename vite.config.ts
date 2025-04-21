@@ -10,6 +10,11 @@ const repoBase = process.env.VITE_BASE_PATH || "/VYRA.OF/";
 
 export default defineConfig(({ mode }) => ({
   base: repoBase, // Set to your GitHub repo name with leading and trailing slashes
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    sourcemap: mode !== 'production',
+  },
   server: {
     host: "::",
     port: 8080,

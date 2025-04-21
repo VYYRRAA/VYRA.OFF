@@ -37,7 +37,7 @@ const Navbar = () => {
       scrolled ? 'bg-background/90 backdrop-blur-md shadow-lg' : 'bg-background/50 backdrop-blur-sm'
     } border-b border-border`}>
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Removed Logo -- just link to home with brand name now */}
+        {/* Link to home with brand name */}
         <Link to="/" className="flex items-center space-x-2 group">
           <span className="font-bold text-2xl text-gradient group-hover:opacity-80 transition-opacity">
             VYRA
