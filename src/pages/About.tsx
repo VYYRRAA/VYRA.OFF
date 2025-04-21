@@ -1,5 +1,5 @@
 
-import { Users, Star, Bulb, Handshake } from "lucide-react";
+import { Users, Star, Lightbulb, Handshake } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 
 const About = () => {
@@ -81,7 +81,7 @@ const About = () => {
               </div>
               <div className="bg-black/50 p-6 rounded-xl border border-pink-500/30 glass-morphism hover-scale shadow-2xl transition-shadow">
                 <div className="mb-3 flex items-center gap-2">
-                  <Bulb className="h-6 w-6 text-pink-400" />
+                  <Lightbulb className="h-6 w-6 text-pink-400" />
                   <span className="font-bold text-lg">Drive Innovation</span>
                 </div>
                 <p className="text-pink-100">
@@ -117,7 +117,7 @@ const About = () => {
             <div className="flex items-start fade-in">
               <div className="flex-shrink-0 mr-4">
                 <span className="inline-block bg-pink-500/20 p-3 rounded-full">
-                  <Bulb className="h-6 w-6 text-pink-400" />
+                  <Lightbulb className="h-6 w-6 text-pink-400" />
                 </span>
               </div>
               <div>
