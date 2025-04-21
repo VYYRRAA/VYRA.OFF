@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 // Application form interface
 interface ApplicationForm {
@@ -43,22 +44,14 @@ const Apply = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  // Generate unique ID (starting from 10001)
-  const generateUniqueId = () => {
-    // In a real application, this would check the database for the last ID
-    // For demo purposes, we'll generate a random number after 10001
-    const randomOffset = Math.floor(Math.random() * 500);
-    return (10001 + randomOffset).toString();
-  };
-
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Form validation
-    const requiredFields = ["name", "age", "email", "socials", "telegram"];
+    const requiredFields = ["name", "age", "email", "socials", "telegram", "contentStyle"];
     const missingFields = requiredFields.filter(field => !formData[field as keyof ApplicationForm]);
-    
+
     if (missingFields.length > 0) {
       toast({
         title: "Missing Information",
@@ -67,25 +60,47 @@ const Apply = () => {
       });
       return;
     }
-    
-    // Submit form
+
     setIsSubmitting(true);
-    
-    // Simulate API call with timeout
-    setTimeout(() => {
-      const id = generateUniqueId();
-      setApplicationId(id);
+
+    // Prepare the data to insert
+    const insertData = {
+      name: formData.name,
+      age: Number(formData.age),
+      email: formData.email,
+      country: formData.country || null,
+      socials: formData.socials,
+      telegram: formData.telegram,
+      content_style: formData.contentStyle,
+    };
+
+    const { data, error } = await supabase
+      .from("applications")
+      .insert([insertData])
+      .select("id")
+      .single();
+
+    if (error) {
+      console.error("Failed to submit application:", error);
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      
       toast({
-        title: "Application Submitted!",
-        description: `Your application has been received. Your application ID is: ${id}`,
+        title: "Submission Failed",
+        description: "There was a problem submitting your application. Please try again.",
+        variant: "destructive"
       });
-      
-      // Reset form
-      setFormData(initialFormState);
-    }, 1500);
+      return;
+    }
+
+    setApplicationId(data?.id ? data.id.toString() : "");
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+
+    toast({
+      title: "Application Submitted!",
+      description: `Your application has been received. Your application ID is: ${data?.id}`,
+    });
+
+    setFormData(initialFormState);
   };
 
   return (
