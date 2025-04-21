@@ -101,14 +101,14 @@ export default function ApplyForm({ onSuccess }: ApplyFormProps) {
         age: Number(formData.age),
         email: formData.email,
         content_style: formData.contentStyle,
-        socials: formData.socials || ""
+        socials: formData.socials || "",
+        telegram: formData.telegram || "" // Fix: Provide default empty string for telegram
       };
 
       if (availableColumns.includes('country')) insertData.country = formData.country || null;
       if (availableColumns.includes('instagram')) insertData.instagram = formData.instagram || null;
       if (availableColumns.includes('twitter')) insertData.twitter = formData.twitter || null;
       if (availableColumns.includes('onlyfans')) insertData.onlyfans = formData.onlyfans || null;
-      if (availableColumns.includes('telegram')) insertData.telegram = formData.telegram || null;
       if (availableColumns.includes('tiktok')) insertData.tiktok = formData.tiktok || null;
       if (availableColumns.includes('youtube')) insertData.youtube = formData.youtube || null;
       if (availableColumns.includes('facebook')) insertData.facebook = formData.facebook || null;
@@ -149,7 +149,7 @@ export default function ApplyForm({ onSuccess }: ApplyFormProps) {
   };
 
   return (
-    <div className="bg-card p-8 rounded-xl border border-border">
+    <div className="bg-card p-8 rounded-xl border border-border shadow-xl animate-fade-in">
       <form onSubmit={handleSubmit}>
         <div className="space-y-6">
           {/* Name */}
@@ -335,17 +335,17 @@ export default function ApplyForm({ onSuccess }: ApplyFormProps) {
             <Info className="h-5 w-5 text-muted-foreground mr-3 flex-shrink-0 mt-0.5" />
             <p className="text-sm text-muted-foreground">
               By submitting this application, you agree to our{" "}
-              <Link to="/privacy" className="text-primary underline hover:text-primary/90">
+              <Link to="/privacy" className="text-pink-500 underline hover:text-pink-400">
                 Privacy Policy
               </Link>{" "}
               and{" "}
-              <Link to="/terms" className="text-primary underline hover:text-primary/90">
+              <Link to="/terms" className="text-pink-500 underline hover:text-pink-400">
                 Terms of Service
               </Link>.
             </p>
           </div>
           {/* Submit Button */}
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
+          <Button type="submit" className="w-full bg-pink-600 hover:bg-pink-700 transition-all" disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Submit Application"}
           </Button>
         </div>
