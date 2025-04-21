@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Info } from "lucide-react";
@@ -8,7 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import downloadApplicationAsText from "./downloadTextFile";
+import saveApplicationAsTextToDb from "./downloadTextFile";
 
 interface ApplicationForm {
   name: string;
@@ -130,7 +129,21 @@ export default function ApplyForm({ onSuccess }: ApplyFormProps) {
       }
 
       const appId = data[0]?.id?.toString() ?? "Unknown";
-      downloadApplicationAsText({ ...formData, id: appId });
+
+      // Save the text file in the database instead of downloading
+      const { error: fileError } = await saveApplicationAsTextToDb({
+        ...formData,
+        id: appId,
+      });
+      if (fileError) {
+        toast({
+          title: "File Save Failed",
+          description:
+            "Application saved but the text file could not be stored. Please contact us if you need your application file.",
+          variant: "destructive",
+        });
+      }
+
       toast({
         title: "Application Submitted!",
         description: `Your application has been received. Your application ID is: ${appId}`,
