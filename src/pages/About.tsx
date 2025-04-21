@@ -1,85 +1,91 @@
 
-import { Check } from "lucide-react";
+import { Users, Star, Bulb, Handshake } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 
 const About = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary/5 to-secondary pt-20 pb-20 md:pt-28 md:pb-28">
-        <div className="absolute inset-0 bg-grid-white/20 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.5))] dark:bg-grid-black/20"></div>
-        <div className="container mx-auto px-4 relative">
+      <section className="relative overflow-hidden bg-gradient-to-br from-black to-pink-900 pt-20 pb-20 md:pt-28 md:pb-28 slide-in">
+        <div className="absolute inset-0 bg-grid-white/10 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.3))] dark:bg-grid-black/20"></div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              <span className="inline">About </span>
-              <span className="inline bg-gradient-to-r from-primary to-accent-foreground bg-clip-text text-transparent">VYRA</span>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-gradient">
+              About <span className="bg-gradient-to-r from-pink-500 to-fuchsia-500 bg-clip-text text-transparent">VYRA</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Empowering digital creators to build sustainable careers through innovation, support, and community.
+            <p className="text-lg md:text-xl text-pink-100 mb-8 max-w-2xl mx-auto fade-in">
+              Empowering digital creators to build sustainable, profitable careers through innovation, strategy, and community.
             </p>
           </div>
         </div>
-        
-        {/* Creative visual element */}
-        <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 w-3/4 h-40 bg-gradient-to-r from-primary/20 to-accent-foreground/20 blur-3xl rounded-full"></div>
+        {/* Pink creative visual element */}
+        <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 w-3/4 h-40 bg-gradient-to-r from-pink-500/30 to-fuchsia-500/30 blur-3xl rounded-full"></div>
       </section>
 
       {/* Our Story */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Our Story</h2>
-            
-            <div className="prose prose-lg dark:prose-invert max-w-none">
+      <section className="py-20 bg-black text-white">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-10">
+          <div className="md:w-1/2 fade-in">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-pink-400">Our Story</h2>
+            <div className="prose prose-lg dark:prose-invert max-w-none text-white">
               <p>
-                VYRA was founded in 2022 with a clear mission: to help digital creators transform their passion into sustainable careers. What started as a small collective of industry experts has grown into a thriving ecosystem supporting creators around the globe.
+                VYRA was launched in 2024 with one mission: to help creators turn their passion into lasting, lucrative careers. What began as a small, driven collective of marketing professionals and creators has since evolved into a global ecosystem supporting talent across all major platforms.
               </p>
-              
               <p>
-                Our founder, Sarah Chen, experienced firsthand the challenges of building a creator business. After struggling to monetize her own content despite a growing audience, she assembled a team of marketing specialists, platform experts, and successful creators to build a comprehensive support system for digital entrepreneurs.
+                Our founder, Akhil M, built VYRA after navigating the challenges of content creation firsthand. Despite growing an engaged audience, he found monetization elusive and the support system lacking. Determined to change that, he brought together experts in growth strategy, platform dynamics, and digital marketing to form a full-service support system for creators.
               </p>
-              
               <p>
-                Today, VYRA works with hundreds of creators across multiple platforms, providing personalized strategies, community support, and innovative tools to help them grow their audience and revenue streams.
+                Today, VYRA supports hundreds of creators worldwide — helping them grow their brands, scale their income, and reclaim their time through strategic, hands-on partnership.
               </p>
-              
-              <blockquote>
-                <p>"We believe that creators deserve better. Better tools, better support, and better opportunities to build meaningful careers doing what they love."</p>
-                <footer>— Sarah Chen, Founder & CEO</footer>
+              <blockquote className="border-l-4 border-pink-500 pl-4 italic my-6">
+                "We believe creators deserve more. More support. More strategy. More control over their careers — and the freedom to focus on doing what they love."
+                <footer className="mt-2 not-italic text-pink-300 font-bold">— Akhil M, Founder & CEO</footer>
               </blockquote>
             </div>
           </div>
+          <div className="md:w-1/2 flex justify-center fade-in">
+            <img
+              src="/vyra-founder.jpg"
+              alt="Akhil M, Founder"
+              className="w-64 h-64 rounded-2xl object-cover shadow-lg border-4 border-pink-500 animate-[fadeIn_1.2s_ease]"
+            />
+          </div>
         </div>
       </section>
 
-      {/* Our Mission */}
-      <section className="py-20 bg-secondary">
+      {/* Mission Section */}
+      <section className="py-20 bg-gradient-to-br from-black to-fuchsia-800/80 text-white fade-in">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Mission</h2>
-            <p className="text-lg md:text-xl mb-10">
-              At VYRA, we're guided by core principles that define everything we do:
-            </p>
-            
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-pink-400">
+              Our Mission
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-              <div className="bg-card p-6 rounded-xl border border-border">
-                <h3 className="text-xl font-semibold mb-3">Empower Creators</h3>
-                <p className="text-muted-foreground">
-                  We provide the tools, knowledge, and support creators need to take control of their digital careers.
+              <div className="bg-black/50 p-6 rounded-xl border border-pink-500/30 glass-morphism hover-scale shadow-2xl transition-shadow">
+                <div className="mb-3 flex items-center gap-2">
+                  <Users className="h-6 w-6 text-pink-400" />
+                  <span className="font-bold text-lg">Empower Creators</span>
+                </div>
+                <p className="text-pink-100">
+                  We equip creators with tools, strategies, and expert support to take full control of their digital careers.
                 </p>
               </div>
-              
-              <div className="bg-card p-6 rounded-xl border border-border">
-                <h3 className="text-xl font-semibold mb-3">Foster Community</h3>
-                <p className="text-muted-foreground">
-                  We believe in the power of connection, bringing creators together to learn, collaborate, and grow.
+              <div className="bg-black/50 p-6 rounded-xl border border-pink-500/30 glass-morphism hover-scale shadow-2xl transition-shadow">
+                <div className="mb-3 flex items-center gap-2">
+                  <Handshake className="h-6 w-6 text-pink-400" />
+                  <span className="font-bold text-lg">Foster Community</span>
+                </div>
+                <p className="text-pink-100">
+                  We believe growth happens faster together — so we create spaces for creators to connect, share, and collaborate.
                 </p>
               </div>
-              
-              <div className="bg-card p-6 rounded-xl border border-border">
-                <h3 className="text-xl font-semibold mb-3">Drive Innovation</h3>
-                <p className="text-muted-foreground">
-                  We continuously evolve our approaches to stay ahead of platform changes and industry trends.
+              <div className="bg-black/50 p-6 rounded-xl border border-pink-500/30 glass-morphism hover-scale shadow-2xl transition-shadow">
+                <div className="mb-3 flex items-center gap-2">
+                  <Bulb className="h-6 w-6 text-pink-400" />
+                  <span className="font-bold text-lg">Drive Innovation</span>
+                </div>
+                <p className="text-pink-100">
+                  We stay ahead of trends and platform changes to ensure our creators are always a step ahead.
                 </p>
               </div>
             </div>
@@ -87,115 +93,63 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Meet Our Team</h2>
-          <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Our diverse team of experts is dedicated to helping creators succeed in the digital landscape.
-          </p>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Team Member 1 */}
-            <div className="text-center">
-              <div className="w-32 h-32 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <span className="text-xl font-medium text-primary">SC</span>
-              </div>
-              <h3 className="text-lg font-semibold">Sarah Chen</h3>
-              <p className="text-muted-foreground">Founder & CEO</p>
-            </div>
-            
-            {/* Team Member 2 */}
-            <div className="text-center">
-              <div className="w-32 h-32 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <span className="text-xl font-medium text-primary">MJ</span>
-              </div>
-              <h3 className="text-lg font-semibold">Marcus Johnson</h3>
-              <p className="text-muted-foreground">Head of Creator Relations</p>
-            </div>
-            
-            {/* Team Member 3 */}
-            <div className="text-center">
-              <div className="w-32 h-32 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <span className="text-xl font-medium text-primary">LP</span>
-              </div>
-              <h3 className="text-lg font-semibold">Lisa Park</h3>
-              <p className="text-muted-foreground">Strategy Director</p>
-            </div>
-            
-            {/* Team Member 4 */}
-            <div className="text-center">
-              <div className="w-32 h-32 mx-auto bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                <span className="text-xl font-medium text-primary">DN</span>
-              </div>
-              <h3 className="text-lg font-semibold">David Nguyen</h3>
-              <p className="text-muted-foreground">Technology Lead</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      
       {/* Values Section */}
-      <section className="py-20 bg-secondary">
+      <section className="py-20 bg-black text-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">Our Values</h2>
-          <p className="text-lg text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-            These principles guide how we work with creators and build our community.
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-pink-400">Our Values</h2>
+          <p className="text-lg text-center text-pink-100 mb-12 max-w-2xl mx-auto">
+            These core values guide our work and our community every day.
           </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="flex items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+            <div className="flex items-start fade-in">
               <div className="flex-shrink-0 mr-4">
-                <div className="bg-primary/10 p-2 rounded-full">
-                  <Check className="h-5 w-5 text-primary" />
-                </div>
+                <span className="inline-block bg-pink-500/20 p-3 rounded-full">
+                  <Star className="h-6 w-6 text-pink-400" />
+                </span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">Authenticity</h3>
-                <p className="text-muted-foreground">
-                  We believe in genuine connections and transparent communication in all we do.
+                <h3 className="text-lg font-semibold mb-2 text-pink-200">Authenticity</h3>
+                <p className="text-pink-100">
+                  We prioritize real connections and transparent communication in all our partnerships.
                 </p>
               </div>
             </div>
-            
-            <div className="flex items-start">
+            <div className="flex items-start fade-in">
               <div className="flex-shrink-0 mr-4">
-                <div className="bg-primary/10 p-2 rounded-full">
-                  <Check className="h-5 w-5 text-primary" />
-                </div>
+                <span className="inline-block bg-pink-500/20 p-3 rounded-full">
+                  <Bulb className="h-6 w-6 text-pink-400" />
+                </span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">Innovation</h3>
-                <p className="text-muted-foreground">
-                  We constantly evolve our approaches to stay ahead of industry trends.
+                <h3 className="text-lg font-semibold mb-2 text-pink-200">Innovation</h3>
+                <p className="text-pink-100">
+                  We embrace change, test new ideas, and adapt quickly in an ever-evolving industry.
                 </p>
               </div>
             </div>
-            
-            <div className="flex items-start">
+            <div className="flex items-start fade-in">
               <div className="flex-shrink-0 mr-4">
-                <div className="bg-primary/10 p-2 rounded-full">
-                  <Check className="h-5 w-5 text-primary" />
-                </div>
+                <span className="inline-block bg-pink-500/20 p-3 rounded-full">
+                  <Users className="h-6 w-6 text-pink-400" />
+                </span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">Inclusivity</h3>
-                <p className="text-muted-foreground">
-                  We welcome creators from all backgrounds, perspectives, and niches.
+                <h3 className="text-lg font-semibold mb-2 text-pink-200">Inclusivity</h3>
+                <p className="text-pink-100">
+                  We welcome creators from every background, identity, and niche.
                 </p>
               </div>
             </div>
-            
-            <div className="flex items-start">
+            <div className="flex items-start fade-in">
               <div className="flex-shrink-0 mr-4">
-                <div className="bg-primary/10 p-2 rounded-full">
-                  <Check className="h-5 w-5 text-primary" />
-                </div>
+                <span className="inline-block bg-pink-500/20 p-3 rounded-full">
+                  <Star className="h-6 w-6 text-pink-400" />
+                </span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">Growth-Focused</h3>
-                <p className="text-muted-foreground">
-                  We measure our success by the growth and achievements of our creators.
+                <h3 className="text-lg font-semibold mb-2 text-pink-200">Growth-Focused</h3>
+                <p className="text-pink-100">
+                  We succeed when our creators succeed. Everything we do is designed to drive sustainable growth.
                 </p>
               </div>
             </div>
@@ -207,3 +161,4 @@ const About = () => {
 };
 
 export default About;
+
